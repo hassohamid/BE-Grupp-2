@@ -21,25 +21,6 @@ router.post('/register', async (req, res) => {
   }
 });
 
-// Login
-router.post('/login', async (req, res) => {
-  try {
-    const { username, password } = req.body;
-    const user = await User.findOne({ username });
-    
-    if (!user || !(await user.comparePassword(password))) {
-      throw new Error('Invalid login credentials');
-    }
-    
-    const token = jwt.sign(
-      { id: user._id, isAdmin: user.isAdmin },
-      process.env.JWT_SECRET || 'your-secret-key'
-    );
-    
-    res.json({ user, token });
-  } catch (error) {
-    res.status(401).json({ error: error.message });
-  }
-});
+//TODO Login
 
 export default router;
