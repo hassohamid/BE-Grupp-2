@@ -10,6 +10,7 @@ app.use(
     credentials: true,
   })
 );
+app.options("*", cors());
 app.use(express.json());
 
 const productRoutes = require("./src/products/routes/ProductRoutes");
